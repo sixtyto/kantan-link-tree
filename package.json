@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@nuxt/eslint": "^1.9.0",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.6",
+    "eslint": "^9.37.0",
+    "nuxt": "^4.1.2",
+    "nuxt-auth-utils": "^0.5.25",
+    "vue": "^3.5.22",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.5",
+    "tsx": "^4.20.6"
+  }
+}
