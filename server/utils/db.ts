@@ -4,4 +4,4 @@ import * as schema from "../database/schema";
 
 export const tables = schema;
 
-export const useDb = () => drizzle(process.env.DATABASE_URL!);
+export const useDb = () => drizzle(process.env.DATABASE_URL!, { schema });
