@@ -78,11 +78,6 @@ export default defineEventHandler(async (event) => {
         lastLoginAt: user.lastLoginAt!,
       } satisfies User,
     });
-
-    return {
-      success: true,
-      message: "Profile updated successfully",
-    };
   } catch {
     throw createError({
       statusCode: 500,

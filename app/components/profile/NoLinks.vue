@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const emit = defineEmits<{
+  add: [];
+}>();
+</script>
+
 <template>
   <div class="text-center py-12">
     <UIcon
@@ -15,7 +21,9 @@
     </p>
 
     <div class="mt-6">
-      <UButton icon="i-heroicons-plus"> Add your first link </UButton>
+      <UButton icon="i-heroicons-plus" @click="emit('add')">
+        Add your first link
+      </UButton>
     </div>
   </div>
 </template>

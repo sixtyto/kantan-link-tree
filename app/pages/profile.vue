@@ -57,15 +57,31 @@ function handleLogout() {
           :ui="{ header: 'w-full' }"
         >
           <template #header>
-            <div class="flex items-center justify-between">
-              <h2 class="text-lg font-medium text-gray-900 dark:text-white">
-                Your links
-              </h2>
-              <UButton icon="i-heroicons-plus"> Add link </UButton>
+            <div class="flex flex-col gap-4">
+              <div>
+                <h2
+                  class="text-lg font-medium text-gray-900 dark:text-white mb-1"
+                >
+                  Social Links
+                </h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  Click icons to add or edit your social media links
+                </p>
+              </div>
+              <ProfileSocialLinksSection />
             </div>
           </template>
 
-          <ProfileNoLinks />
+          <div class="space-y-4">
+            <div>
+              <h3
+                class="text-lg font-medium text-gray-900 dark:text-white mb-3"
+              >
+                Custom Links
+              </h3>
+              <ProfileLinksSection />
+            </div>
+          </div>
         </UPageCard>
 
         <div>
@@ -83,6 +99,19 @@ function handleLogout() {
             </div>
 
             <div class="space-y-2 mt-4">
+              <UButton
+                variant="outline"
+                color="primary"
+                block
+                :to="`/u/${user?.username}`"
+                target="_blank"
+              >
+                <template #leading>
+                  <UIcon name="i-heroicons-eye" />
+                </template>
+                View Public Profile
+              </UButton>
+
               <UButton variant="outline" block to="/settings">
                 <template #leading>
                   <UIcon name="i-heroicons-cog-6-tooth" />

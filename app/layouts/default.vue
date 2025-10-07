@@ -67,6 +67,7 @@ const userMenuItems: DropdownMenuItem[] = [
 
       <template #body>
         <slot />
+        <ConfirmModal />
       </template>
     </UDashboardPanel>
   </UDashboardGroup>
