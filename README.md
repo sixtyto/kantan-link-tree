@@ -8,16 +8,16 @@
 
 ## 📋 Table of Contents
 
-- [🎯 About](#about)
-- [✨ Features](#features)
-- [🛠 Tech Stack](#tech-stack)
-- [🚀 Getting Started](#getting-started)
-- [📁 Project Structure](#project-structure)
-- [🔌 API Endpoints](#api-endpoints)
-- [🔐 Environment Variables](#environment-variables)
-- [💻 Development](#development)
-- [📝 License](#license)
-- [🙏 Acknowledgments](#acknowledgments)
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [API Endpoints](#api-endpoints)
+- [Environment Variables](#environment-variables)
+- [Development](#development)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
