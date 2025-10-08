@@ -48,9 +48,24 @@ async function trackLinkClick(linkId: string) {
   }
 }
 
+async function trackSocialLinkClick(socialLinkId: string) {
+  try {
+    await $fetch(`/api/social-links/${socialLinkId}/track`, {
+      method: "POST",
+    });
+  } catch (error) {
+    console.error("Failed to track social link click:", error);
+  }
+}
+
 function handleLinkClick(link: { id: string; url: string }) {
   trackLinkClick(link.id);
   window.open(link.url, "_blank");
+}
+
+function handleSocialLinkClick(socialLink: { id: string; url: string }) {
+  trackSocialLinkClick(socialLink.id);
+  window.open(socialLink.url, "_blank");
 }
 
 const themeStyles = computed(() => {
@@ -194,9 +209,8 @@ if (profileData.value) {
             size="xl"
             variant="ghost"
             square
-            :to="social.url"
-            target="_blank"
             :class="socialColors[social.platform as SocialPlatform]"
+            @click="handleSocialLinkClick(social)"
           />
         </div>
 

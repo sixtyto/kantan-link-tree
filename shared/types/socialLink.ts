@@ -14,6 +14,7 @@ export type SocialLink = {
   platform: SocialPlatform;
   url: string;
   order?: number;
+  clicks?: number;
   updatedAt?: Date;
 };
 

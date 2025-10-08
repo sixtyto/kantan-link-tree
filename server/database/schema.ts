@@ -54,6 +54,7 @@ export const socialLinks = pgTable("social_links", {
   platform: socialPlatformEnum("platform").notNull(),
   url: text("url").notNull(),
   order: integer("order").notNull().default(0),
+  clicks: integer("clicks").notNull().default(0),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 

@@ -60,8 +60,13 @@ function handleEditClick(link: SocialLink) {
   isModalOpen.value = true;
 }
 
+const emit = defineEmits<{
+  saved: [];
+}>();
+
 function handleSaved() {
   fetchSocialLinks();
+  emit("saved");
 }
 
 onMounted(() => {

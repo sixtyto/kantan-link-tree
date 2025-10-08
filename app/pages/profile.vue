@@ -17,23 +17,50 @@ useHead({
 
 const { user, clear } = useUserSession();
 
-const stats = ref<PageCardProps[]>([
-  {
-    title: "Active links",
-    description: "0",
-    icon: "i-heroicons-link",
-  },
-  {
-    title: "Views",
-    description: "0",
-    icon: "i-heroicons-chart-bar",
-  },
-  {
-    title: "Last activity",
-    description: "Today",
-    icon: "i-heroicons-clock",
-  },
-]);
+const links = ref<Link[]>([]);
+const socialLinks = ref<SocialLink[]>([]);
+
+const stats = computed<PageCardProps[]>(() => {
+  const customLinkClicks = links.value.reduce(
+    (sum, link) => sum + (link.clicks || 0),
+    0
+  );
+  const socialLinkClicks = socialLinks.value.reduce(
+    (sum, link) => sum + (link.clicks || 0),
+    0
+  );
+  const totalClicks = customLinkClicks + socialLinkClicks;
+
+  const visibleLinks = links.value.filter((link) => link.isVisible).length;
+  const totalActiveLinks = visibleLinks + socialLinks.value.length;
+
+  return [
+    {
+      title: "All links",
+      description: String(totalActiveLinks),
+      icon: "i-heroicons-link",
+    },
+    {
+      title: "Total clicks",
+      description: String(totalClicks),
+      icon: "i-heroicons-cursor-arrow-rays",
+    },
+  ];
+});
+
+loadData();
+async function loadData() {
+  try {
+    const [linksData, socialLinksData] = await Promise.all([
+      $fetch<Link[]>("/api/links/list"),
+      $fetch<SocialLink[]>("/api/social-links/list"),
+    ]);
+    links.value = linksData;
+    socialLinks.value = socialLinksData;
+  } catch (error) {
+    console.error("Failed to load data:", error);
+  }
+}
 
 function handleLogout() {
   clear();
@@ -78,7 +105,7 @@ function handleLogout() {
                   Click icons to add or edit your social media links
                 </p>
               </div>
-              <ProfileSocialLinksSection />
+              <ProfileSocialLinksSection @saved="loadData" />
             </div>
           </template>
 
@@ -89,7 +116,7 @@ function handleLogout() {
               >
                 Custom Links
               </h3>
-              <ProfileLinksSection />
+              <ProfileLinksSection @saved="loadData" />
             </div>
           </div>
         </UPageCard>

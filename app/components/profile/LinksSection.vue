@@ -31,8 +31,13 @@ function handleEditClick(link: Link) {
   isModalOpen.value = true;
 }
 
+const emit = defineEmits<{
+  saved: [];
+}>();
+
 function handleSaved() {
   fetchLinks();
+  emit("saved");
 }
 
 onMounted(() => {
@@ -70,12 +75,20 @@ onMounted(() => {
             <h4 class="font-medium text-gray-900 dark:text-white truncate">
               {{ link.title }}
             </h4>
-            <p
-              v-if="link.description"
-              class="text-sm text-gray-500 dark:text-gray-400 truncate"
-            >
-              {{ link.description }}
-            </p>
+            <div class="flex items-center gap-2 mt-1">
+              <p
+                v-if="link.description"
+                class="text-sm text-gray-500 dark:text-gray-400 truncate"
+              >
+                {{ link.description }}
+              </p>
+              <div
+                class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400"
+              >
+                <UIcon name="i-heroicons-cursor-arrow-rays" class="w-4 h-4" />
+                <span>{{ link.clicks || 0 }}</span>
+              </div>
+            </div>
           </div>
           <UIcon
             name="i-heroicons-chevron-right"
