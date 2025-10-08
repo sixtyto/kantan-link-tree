@@ -79,10 +79,74 @@ useHead({
       name: "description",
       content:
         profileData.value?.profile?.bio ||
+        `Check out ${profileData.value?.username}'s links on Kantan Link Tree`,
+    },
+    {
+      property: "og:title",
+      content: `${
+        profileData.value?.profile?.name || profileData.value?.username
+      } - Kantan Link Tree`,
+    },
+    {
+      property: "og:description",
+      content:
+        profileData.value?.profile?.bio ||
         `Check out ${profileData.value?.username}'s links`,
+    },
+    {
+      property: "og:type",
+      content: "profile",
+    },
+    {
+      property: "og:url",
+      content: `https://kantan-link-tree.vercel.app/u/${profileData.value?.username}`,
+    },
+    {
+      property: "og:image",
+      content:
+        profileData.value?.profile?.avatar ||
+        "https://kantan-link-tree.vercel.app/og-image.png",
+    },
+    {
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      name: "twitter:title",
+      content: `${
+        profileData.value?.profile?.name || profileData.value?.username
+      }`,
+    },
+    {
+      name: "twitter:description",
+      content:
+        profileData.value?.profile?.bio ||
+        `Check out ${profileData.value?.username}'s links`,
+    },
+    {
+      name: "twitter:image",
+      content:
+        profileData.value?.profile?.avatar ||
+        "https://kantan-link-tree.vercel.app/og-image.png",
+    },
+  ],
+  link: [
+    {
+      rel: "canonical",
+      href: `https://kantan-link-tree.vercel.app/u/${profileData.value?.username}`,
     },
   ],
 });
+
+if (profileData.value) {
+  useProfileJsonLd({
+    name: profileData.value.profile?.name || profileData.value.username,
+    username: profileData.value.username,
+    bio: profileData.value.profile?.bio ?? undefined,
+    avatar: profileData.value.profile?.avatar ?? undefined,
+    links: profileData.value.links,
+  });
+}
 </script>
 
 <template>

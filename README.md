@@ -67,6 +67,14 @@ Kantan Link Tree is a modern, full-stack link aggregation platform that allows u
 - Mobile-first approach
 - Intuitive user interface
 
+### 🔍 SEO Optimized
+
+- Complete meta tags (Open Graph, Twitter Cards)
+- Structured data (JSON-LD) for better search engine visibility
+- Dynamic SEO for user profiles
+- Optimized robots.txt
+- Canonical URLs to prevent duplicate content
+
 ## Tech Stack
 
 ### Frontend
@@ -151,6 +159,9 @@ kantan-link-tree/
 │   │   ├── settings/           # Settings components
 │   │   └── ui/                 # Reusable UI components
 │   ├── composables/            # Vue composables
+│   │   ├── useConfirm.ts      # Confirmation modal composable
+│   │   ├── useProfileJsonLd.ts # Profile JSON-LD structured data
+│   │   └── useOrganizationJsonLd.ts # Organization JSON-LD
 │   ├── layouts/                # Nuxt layouts
 │   ├── middleware/             # Route middleware
 │   ├── pages/                  # Application pages
@@ -174,6 +185,8 @@ kantan-link-tree/
 │   └── types/                 # TypeScript types
 ├── drizzle/                     # Database migrations
 ├── public/                      # Static assets
+│   ├── favicon.ico            # Favicon
+│   └── robots.txt             # Robots configuration
 └── nuxt.config.ts              # Nuxt configuration
 ```
 
@@ -242,6 +255,16 @@ npm run db:migrate
 # Open Drizzle Studio (database GUI)
 npm run db:studio
 ```
+
+### SEO Implementation
+
+The application includes comprehensive SEO optimization:
+
+- **Meta Tags**: Each page has unique titles, descriptions, Open Graph, and Twitter Card tags
+- **Structured Data**: JSON-LD schema markup for better search visibility
+- **Dynamic SEO**: User profiles generate custom meta tags and structured data
+- **robots.txt**: Configured to control search engine crawling
+- **Composable Helpers**: `useProfileJsonLd()` and `useOrganizationJsonLd()` for structured data
 
 ## License
 

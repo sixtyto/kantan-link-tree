@@ -2,6 +2,26 @@
 import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
 import type { z } from "zod";
 
+useHead({
+  title: "Login - Kantan Link Tree",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Sign in to your Kantan Link Tree account to manage your personalized link tree and track your performance.",
+    },
+    {
+      property: "og:title",
+      content: "Login - Kantan Link Tree",
+    },
+    {
+      property: "og:description",
+      content:
+        "Sign in to your Kantan Link Tree account to manage your personalized link tree.",
+    },
+  ],
+});
+
 const { fetch } = useUserSession();
 
 const loading = ref(false);

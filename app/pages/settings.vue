@@ -2,6 +2,16 @@
 definePageMeta({
   middleware: "auth",
 });
+
+useHead({
+  title: "Settings - Kantan Link Tree",
+  meta: [
+    {
+      name: "robots",
+      content: "noindex, nofollow",
+    },
+  ],
+});
 </script>
 
 <template>

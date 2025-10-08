@@ -1,6 +1,29 @@
 <script setup lang="ts">
 import type { ButtonProps, PageCardProps } from "@nuxt/ui";
 
+useHead({
+  title: "Kantan Link Tree - Create Your Personal Link Hub",
+  meta: [
+    {
+      name: "description",
+      content:
+        "The easiest way to create a beautiful, personalized link tree that drives traffic to all your important links. Perfect for social media, creators, and businesses.",
+    },
+    {
+      property: "og:title",
+      content: "Kantan Link Tree - Create Your Personal Link Hub",
+    },
+    {
+      property: "og:description",
+      content:
+        "The easiest way to create a beautiful, personalized link tree that drives traffic to all your important links.",
+    },
+    { property: "og:url", content: "https://kantan-link-tree.vercel.app" },
+  ],
+});
+
+useOrganizationJsonLd();
+
 const cards = ref<PageCardProps[]>([
   {
     title: "Easy Setup",

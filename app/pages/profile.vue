@@ -5,6 +5,16 @@ definePageMeta({
   middleware: "auth",
 });
 
+useHead({
+  title: "My Profile - Kantan Link Tree",
+  meta: [
+    {
+      name: "robots",
+      content: "noindex, nofollow",
+    },
+  ],
+});
+
 const { user, clear } = useUserSession();
 
 const stats = ref<PageCardProps[]>([
