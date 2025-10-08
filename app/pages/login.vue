@@ -57,9 +57,24 @@ async function handleLogin(event: FormSubmitEvent<LoginUserType>) {
     });
 
     await fetch();
+
+    const toast = useToast();
+    toast.add({
+      title: "Welcome back!",
+      description: "You have successfully logged in",
+      color: "success",
+    });
+
     await navigateTo("/profile");
   } catch (error) {
     console.error("Login error:", error);
+
+    const toast = useToast();
+    toast.add({
+      title: "Login failed",
+      description: "Invalid email or password. Please try again.",
+      color: "error",
+    });
   } finally {
     loading.value = false;
   }

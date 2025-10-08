@@ -72,9 +72,24 @@ async function handleRegister(event: FormSubmitEvent<CreateUserType>) {
     });
 
     await fetch();
+
+    const toast = useToast();
+    toast.add({
+      title: "Account created!",
+      description: "Welcome to Kantan Link Tree 🎉",
+      color: "success",
+    });
+
     await navigateTo("/profile");
   } catch (error) {
     console.error("Registration error:", error);
+
+    const toast = useToast();
+    toast.add({
+      title: "Registration failed",
+      description: "Username or email already exists. Please try another.",
+      color: "error",
+    });
   } finally {
     loading.value = false;
   }

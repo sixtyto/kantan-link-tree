@@ -74,6 +74,13 @@ async function onSubmit(event: FormSubmitEvent<{ url: string }>) {
       });
     }
 
+    const toast = useToast();
+    toast.add({
+      title: isEditing.value ? "Social link updated" : "Social link added",
+      description: `Your ${platformLabel.value} has been saved`,
+      color: "success",
+    });
+
     state.url = "";
     emit("saved");
     open.value = false;
@@ -108,6 +115,13 @@ async function handleDelete() {
   try {
     await $fetch(`/api/social-links/${link!.id}`, {
       method: "DELETE",
+    });
+
+    const toast = useToast();
+    toast.add({
+      title: "Social link deleted",
+      description: `Your ${platformLabel.value} has been removed`,
+      color: "success",
     });
 
     state.url = "";

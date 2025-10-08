@@ -67,6 +67,13 @@ async function onSubmit(
       });
     }
 
+    const toast = useToast();
+    toast.add({
+      title: isEditing.value ? "Link updated" : "Link created",
+      description: "Your link has been saved successfully",
+      color: "success",
+    });
+
     state.title = "";
     state.url = "";
     state.description = "";
@@ -102,6 +109,13 @@ async function handleDelete() {
   try {
     await $fetch(`/api/links/${link!.id}`, {
       method: "DELETE",
+    });
+
+    const toast = useToast();
+    toast.add({
+      title: "Link deleted",
+      description: "Your link has been removed",
+      color: "success",
     });
 
     state.title = "";
