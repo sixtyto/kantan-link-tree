@@ -2,8 +2,10 @@
 const links = ref<Link[]>([]);
 const isModalOpen = ref(false);
 const editingLink = ref<Link | null>(null);
+const isLoading = ref(true);
 
 async function fetchLinks() {
+  isLoading.value = true;
   try {
     const data = await $fetch<Link[]>("/api/links/list");
     links.value = data;
@@ -14,6 +16,8 @@ async function fetchLinks() {
       description: "Please try again later.",
       color: "error",
     });
+  } finally {
+    isLoading.value = false;
   }
 }
 
@@ -38,7 +42,13 @@ onMounted(() => {
 
 <template>
   <div class="space-y-3">
-    <div v-if="links.length === 0">
+    <div v-if="isLoading" class="space-y-2">
+      <USkeleton class="h-20 w-full rounded-lg" />
+      <USkeleton class="h-20 w-full rounded-lg" />
+      <USkeleton class="h-20 w-full rounded-lg" />
+    </div>
+
+    <div v-else-if="links.length === 0">
       <ProfileNoLinks @add="handleAddClick" />
     </div>
 

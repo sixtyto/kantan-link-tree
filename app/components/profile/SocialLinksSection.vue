@@ -2,6 +2,7 @@
 const socialLinks = ref<SocialLink[]>([]);
 const isModalOpen = ref(false);
 const editingLink = ref<SocialLink | null>(null);
+const isLoading = ref(true);
 
 const socialPlatformIcons: Record<
   SocialPlatform,
@@ -29,6 +30,7 @@ const availablePlatforms = computed(() => {
 });
 
 async function fetchSocialLinks() {
+  isLoading.value = true;
   try {
     socialLinks.value = await $fetch<SocialLink[]>("/api/social-links/list");
   } catch {
@@ -38,6 +40,8 @@ async function fetchSocialLinks() {
       description: "Please try again later.",
       color: "error",
     });
+  } finally {
+    isLoading.value = false;
   }
 }
 
@@ -67,7 +71,16 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="flex items-center gap-3 flex-wrap">
+    <div v-if="isLoading" class="flex items-center gap-3 flex-wrap">
+      <USkeleton class="h-12 w-12 rounded-full" />
+      <USkeleton class="h-12 w-12 rounded-full" />
+      <USkeleton class="h-12 w-12 rounded-full" />
+      <USkeleton class="h-12 w-12 rounded-full" />
+      <USkeleton class="h-12 w-12 rounded-full" />
+      <USkeleton class="h-12 w-12 rounded-full" />
+    </div>
+
+    <div v-else class="flex items-center gap-3 flex-wrap">
       <button
         v-for="link in socialLinks"
         :key="link.id"
