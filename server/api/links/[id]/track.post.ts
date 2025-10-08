@@ -10,6 +10,17 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const ip = getRequestIP(event, { xForwardedFor: true }) || "unknown";
+  const rateLimitKey = `track:${linkId}:${ip}`;
+
+  const allowed = checkRateLimit(rateLimitKey);
+
+  if (!allowed) {
+    throw createError({
+      statusCode: 429,
+    });
+  }
+
   const db = useDb();
 
   const result = await db
